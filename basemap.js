@@ -45,10 +45,11 @@ myMap.addLayer(myLayers.bmapgrau);
 let myMapControl  = L.control.layers({
   "OpenStreetMap" : myLayers.osm,
   "Geoland Basemap" : myLayers.geolandbasemap,
-  "Geoland Mapoverlay" : myLayers.bmapoverlay,
   "Geoland Map Grey" : myLayers.bmapgrau,
   "Geoland Map Highdpi" : myLayers.bmaphidip,
   "Geoland Orthophoto 30cm" : myLayers.bmaporthofoto30cm,
+}, {
+  "Geoland Mapoverlay" : myLayers.bmapoverlay,
 })
 myMap.addControl(myMapControl);
 myMap.setView([47.267,11.383], 11);
