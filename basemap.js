@@ -1,7 +1,7 @@
-let myMap = L.map("mapdiv");
+let myMap = L.map("mapdiv");        // http://leafletjs.com/reference-1.3.0.html#map-l-map
 
 let myLayers = {
-  osm : L.tileLayer(
+  osm : L.tileLayer(                // http://leafletjs.com/reference-1.3.0.html#tilelayer-l-tilelayer
     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       subdomains : ["a", "b", "c"],
       attribution : "Datenquelle: <a href = 'https://www.openstreetmap.org/' > © OpenStreetMap</a> Mitwirkende"
@@ -9,8 +9,8 @@ let myLayers = {
   ),
   geolandbasemap : L.tileLayer(
     "https://{s}.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png", {
-      subdomains : ["maps", "maps1", "maps2", "maps3", "maps4"],
-      attribution : "Datenquelle: <a href ='https://basemap.at'> basemap.at </a>"
+      subdomains : ["maps", "maps1", "maps2", "maps3", "maps4"],                                        // http://leafletjs.com/reference-1.3.0.html#tilelayer-subdomains
+      attribution : "Datenquelle: <a href ='https://basemap.at'> basemap.at </a>"                       // http://leafletjs.com/reference-1.3.0.html#layer-attribution
     }
   ),
   bmapoverlay : L.tileLayer(
@@ -40,9 +40,9 @@ let myLayers = {
 };
 
 
-myMap.addLayer(myLayers.bmapgrau);
+myMap.addLayer(myLayers.osm);                    // http://leafletjs.com/reference-1.3.0.html#map-addlayer
 
-let myMapControl  = L.control.layers({
+let myMapControl  = L.control.layers({                // http://leafletjs.com/reference-1.3.0.html#control-layers-l-control-layers
   //Auswahl der Hintergrundkarte
   "OpenStreetMap" : myLayers.osm,
   "Geoland Basemap" : myLayers.geolandbasemap,
@@ -52,6 +52,19 @@ let myMapControl  = L.control.layers({
 }, {
   //overlay
   "Geoland Mapoverlay" : myLayers.bmapoverlay,
-})
-myMap.addControl(myMapControl);
-myMap.setView([47.267,11.383], 11);
+}, { //map control ausgeklappt lassen
+  collapsed:false} );                               // http://leafletjs.com/reference-1.3.0.html#control-layers-collapsed
+
+
+myMap.addControl(myMapControl);                     // http://leafletjs.com/reference-1.3.0.html#map-addcontrol
+myMap.setView([47.267,11.383], 11);                 // http://leafletjs.com/reference-1.3.0.html#map-setview
+
+//Maßstabsleiste
+let myScale = L.control.scale({   //http://leafletjs.com/reference-1.3.0.html#control-scale-l-control-scale
+  position : "bottomleft",        // http://leafletjs.com/reference-1.3.0.html#control-position
+  maxWidth : 200,                 // http://leafletjs.com/reference-1.3.0.html#control-scale-maxwidth
+  imperial : false,               // http://leafletjs.com/reference-1.3.0.html#control-scale-imperial
+  metric : true                   // http://leafletjs.com/reference-1.3.0.html#control-scale-metric
+});
+
+myScale.addTo(myMap);             // http://leafletjs.com/reference-1.3.0.html#handler-addto
