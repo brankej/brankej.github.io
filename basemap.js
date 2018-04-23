@@ -67,4 +67,4 @@ let myScale = L.control.scale({   //http://leafletjs.com/reference-1.3.0.html#co
   metric : true                   // http://leafletjs.com/reference-1.3.0.html#control-scale-metric
 });
 
-myScale.addTo(myMap);             // http://leafletjs.com/reference-1.3.0.html#handler-addto
+myScale.addTo(myMap);             // http://leafletjs.com/reference-1.3.0.html#control-addto
