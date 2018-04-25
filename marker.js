@@ -1,5 +1,7 @@
 let myMap = L.map("mapdiv");        // http://leafletjs.com/reference-1.3.0.html#map-l-map
 
+let markerGroup = L.featureGroup();      //http://leafletjs.com/reference-1.3.0.html#featuregroup-l-featuregroup
+
 let myLayers = {
   osm : L.tileLayer(                // http://leafletjs.com/reference-1.3.0.html#tilelayer-l-tilelayer
     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -41,6 +43,7 @@ let myLayers = {
 
 
 myMap.addLayer(myLayers.bmaporthofoto30cm);                    // http://leafletjs.com/reference-1.3.0.html#map-addlayer
+myMap.addLayer(markerGroup);
 
 let myMapControl  = L.control.layers({                // http://leafletjs.com/reference-1.3.0.html#control-layers-l-control-layers
   //Auswahl der Hintergrundkarte
@@ -52,12 +55,12 @@ let myMapControl  = L.control.layers({                // http://leafletjs.com/re
 }, {
   //overlay
   "Geoland Mapoverlay" : myLayers.bmapoverlay,
+  "Marker" :  markerGroup,
 }, { //map control ausgeklappt lassen
   collapsed:false} );                               // http://leafletjs.com/reference-1.3.0.html#control-layers-collapsed
 
 
 myMap.addControl(myMapControl);                     // http://leafletjs.com/reference-1.3.0.html#map-addcontrol
-myMap.setView([47.267,11.383], 11);                 // http://leafletjs.com/reference-1.3.0.html#map-setview
 
 //Maßstabsleiste
 let myScale = L.control.scale({   //http://leafletjs.com/reference-1.3.0.html#control-scale-l-control-scale
@@ -79,9 +82,25 @@ const markeroptions = {title: "Universität Innsbruck",     //http://leafletjs.c
   }
 
 
-L.marker(unicoords, markeroptions).addTo(myMap);    //http://leafletjs.com/reference-1.3.0.html#marker-l-marker
-L.marker(usicoords, markeroptions).addTo(myMap);
-L.marker(technikcoords, markeroptions).addTo(myMap);
+L.marker(unicoords, markeroptions).addTo(markerGroup);    //http://leafletjs.com/reference-1.3.0.html#marker-l-marker
+L.marker(usicoords, markeroptions).addTo(markerGroup);
+L.marker(technikcoords, markeroptions).addTo(markerGroup);
 
 
-  myMap.setView(unicoords, 14);
+const patscherkofelcoords = [47.208611, 11.460556]
+const iglscoords = [47.230833, 11.408889]
+
+
+let patscherkofelmarker = L.marker(patscherkofelcoords).addTo(markerGroup);
+patscherkofelmarker.bindPopup("<p>Patscherkofel</p><img style='width:200px' src='https://media05.regionaut.meinbezirk.at/2017/02/12/12019164_preview.jpg?1486911814' alt='Patscherkofel'/>");
+L.marker(iglscoords).addTo(markerGroup);
+
+
+myMap.fitBounds(                            //http://leafletjs.com/reference-1.3.0.html#map-fitbounds
+  markerGroup.getBounds());                 //http://leafletjs.com/reference-1.3.0.html#map-getbounds
+
+
+  // create a red polyline from an array of LatLng points
+L.polyline([patscherkofelcoords,iglscoords], {color: 'white'}).addTo(myMap);
+
+let unipolygon = L.polygon([unicoords, usicoords, technikcoords], {color: 'blue'}).addTo(myMap);
