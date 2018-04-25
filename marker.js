@@ -40,7 +40,7 @@ let myLayers = {
 };
 
 
-myMap.addLayer(myLayers.osm);                    // http://leafletjs.com/reference-1.3.0.html#map-addlayer
+myMap.addLayer(myLayers.bmaporthofoto30cm);                    // http://leafletjs.com/reference-1.3.0.html#map-addlayer
 
 let myMapControl  = L.control.layers({                // http://leafletjs.com/reference-1.3.0.html#control-layers-l-control-layers
   //Auswahl der Hintergrundkarte
@@ -68,3 +68,20 @@ let myScale = L.control.scale({   //http://leafletjs.com/reference-1.3.0.html#co
 });
 
 myScale.addTo(myMap);             // http://leafletjs.com/reference-1.3.0.html#control-addto
+
+const unicoords = [47.267,11.383]
+const usicoords = [47.257,11.356]
+const technikcoords = [47.263,11.343]
+
+const markeroptions = {title: "Universität Innsbruck",     //http://leafletjs.com/reference-1.3.0.html#marker-title
+    draggable : false,                   //http://leafletjs.com/reference-1.3.0.html#marker-draggable
+    opacity : 0.7,                       //http://leafletjs.com/reference-1.3.0.html#marker-opacity
+  }
+
+
+L.marker(unicoords, markeroptions).addTo(myMap);    //http://leafletjs.com/reference-1.3.0.html#marker-l-marker
+L.marker(usicoords, markeroptions).addTo(myMap);
+L.marker(technikcoords, markeroptions).addTo(myMap);
+
+
+  myMap.setView(unicoords, 14);
