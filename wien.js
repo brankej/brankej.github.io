@@ -81,7 +81,8 @@ let geojson = L.geoJSON(spaziergang).addTo(spaziergangGroup);
 geojson.bindPopup(function(layer) {
   const props = layer.feature.properties;
   const popupText = `<h1>${props.NAME}</h1>
-  <p>Adresse: ${props.ADRESSE} </p>`;
+  <p> Adresse: ${props.ADRESSE} </p>
+  <p>Weiter Informationen: ${props.WEITERE_INF} </p>`;
   return popupText;
 });
 
