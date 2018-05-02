@@ -1,6 +1,6 @@
 let myMap = L.map("mapdiv");        // http://leafletjs.com/reference-1.3.0.html#map-l-map
 
-const awsGroup = L.featureGroup();
+const spaziergangGroup = L.featureGroup();
 
 let myLayers = {
   osm : L.tileLayer(                // http://leafletjs.com/reference-1.3.0.html#tilelayer-l-tilelayer
@@ -54,7 +54,7 @@ let myMapControl  = L.control.layers({                // http://leafletjs.com/re
 }, {
   //overlay
   "Geoland Mapoverlay" : myLayers.bmapoverlay,
-  "Wetterstationen" : awsGroup,
+  "Stadtspaziergang" : spaziergangGroup,
 }, { //map control ausgeklappt lassen
   collapsed:false} );                               // http://leafletjs.com/reference-1.3.0.html#control-layers-collapsed
 
@@ -73,16 +73,16 @@ let myScale = L.control.scale({   //http://leafletjs.com/reference-1.3.0.html#co
 myScale.addTo(myMap);             // http://leafletjs.com/reference-1.3.0.html#control-addto
 
 
-//console.log("Stationen: ",stationen);
+//console.log("Stationen: ",spaziergang);
 
-myMap.addLayer(awsGroup)
+myMap.addLayer(spaziergangGroup)
 
-let geojson = L.geoJSON(stationen).addTo(awsGroup);
+let geojson = L.geoJSON(spaziergang).addTo(spaziergangGroup);
 geojson.bindPopup(function(layer) {
   const props = layer.feature.properties;
-  const popupText = `<h1>${props.name}</h1>
-  <p>Temperatur: ${props.LT} °C </p>`;
+  const popupText = `<h1>${props.NAME}</h1>
+  <p>Adresse: ${props.ADRESSE} </p>`;
   return popupText;
 });
 
-myMap.fitBounds(awsGroup.getBounds());
+myMap.fitBounds(spaziergangGroup.getBounds());
