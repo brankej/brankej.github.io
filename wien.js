@@ -60,7 +60,6 @@ let myMapControl  = L.control.layers({                // http://leafletjs.com/re
 
 
 myMap.addControl(myMapControl);                     // http://leafletjs.com/reference-1.3.0.html#map-addcontrol
-myMap.setView([47.267,11.383], 11);                 // http://leafletjs.com/reference-1.3.0.html#map-setview
 
 //Maßstabsleiste
 let myScale = L.control.scale({   //http://leafletjs.com/reference-1.3.0.html#control-scale-l-control-scale
@@ -73,17 +72,36 @@ let myScale = L.control.scale({   //http://leafletjs.com/reference-1.3.0.html#co
 myScale.addTo(myMap);             // http://leafletjs.com/reference-1.3.0.html#control-addto
 
 
-//console.log("Stationen: ",spaziergang);
+async function addGeojson(url) {
+  console.log("URL wird geladen: ", url);
+  const response = await fetch(url);
+  console.log("Response: ", response);
+  const spaziergang = await response.json();
+  console.log("GeoJSON: ", spaziergang);
+  const geojson = L.geoJSON(spaziergang, {
+    style: function(feature) {
+      return {color: "#ff0000"};
+    },
+    pointToLayer: function(geoJsonPoint, latlng) {
+      return L.marker(latlng, {icon: L.icon({
+        iconUrl: 'icons/sight-2.png',
+      })
+      });
+    }
+  }).addTo(spaziergangGroup);
+  spaziergangGroup.addLayer(geojson);
+  myMap.fitBounds(spaziergangGroup.getBounds());
+  geojson.bindPopup(function(layer) {
+    const props = layer.feature.properties;
+    const popupText = `<h1>${props.NAME}</h1>
+    <p> Adresse: ${props.ADRESSE} </p>
+    <p>Weiter Informationen: ${props.WEITERE_INF} </p>`;
+    return popupText;
+  });
+}
+
+const url = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&srsName=EPSG:4326&outputFormat=json&typeName=ogdwien:SPAZIERPUNKTOGD,ogdwien:SPAZIERLINIEOGD";
+
+addGeojson(url);
 
 myMap.addLayer(spaziergangGroup)
-
-let geojson = L.geoJSON(spaziergang).addTo(spaziergangGroup);
-geojson.bindPopup(function(layer) {
-  const props = layer.feature.properties;
-  const popupText = `<h1>${props.NAME}</h1>
-  <p> Adresse: ${props.ADRESSE} </p>
-  <p>Weiter Informationen: ${props.WEITERE_INF} </p>`;
-  return popupText;
-});
-
-myMap.fitBounds(spaziergangGroup.getBounds());
