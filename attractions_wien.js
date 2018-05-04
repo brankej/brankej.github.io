@@ -105,3 +105,4 @@ const url = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&ve
 addGeojson(url);
 
 myMap.addLayer(attractionsGroup)
+myMap.addLayer(myLayers.bmapoverlay)

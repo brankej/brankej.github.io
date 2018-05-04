@@ -104,3 +104,4 @@ const url = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&ve
 addGeojson(url);
 
 myMap.addLayer(citybikeGroup)
+myMap.addLayer(myLayers.bmapoverlay)
