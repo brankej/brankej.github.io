@@ -1,6 +1,6 @@
 let myMap = L.map("mapdiv");        // http://leafletjs.com/reference-1.3.0.html#map-l-map
 
-const citybikeGroup = L.featureGroup();
+const citybikeGroup = L.markerClusterGroup();
 
 let myLayers = {
   osm : L.tileLayer(                // http://leafletjs.com/reference-1.3.0.html#tilelayer-l-tilelayer
@@ -40,7 +40,6 @@ let myLayers = {
     }
   ),
 };
-
 
 myMap.addLayer(myLayers.bmaporthofoto30cm);                    // http://leafletjs.com/reference-1.3.0.html#map-addlayer
 
@@ -97,7 +96,11 @@ async function addGeojson(url) {
     <p> Bezirk: ${props.BEZIRK} </p>`;
     return popupText;
   });
-  const hash = new L.Hash(myMap)
+  const hash = new L.Hash(myMap);
+  myMap.addControl( new L.Control.Search({
+    layer: citybikeGroup,
+  propertyName: 'STATION'
+}) );
 }
 
 const url = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:CITYBIKEOGD&srsName=EPSG:4326&outputFormat=json";
