@@ -1,0 +1,24 @@
+/*
+*
+* CSS styles for brankej.github.io
+*
+*/
+
+
+body {
+    max-width: 1280px;
+    margin: auto;
+    font-family: "Open Sans"; /* Source: https://fonts.google.com/specimen/Open+Sans */
+}
+
+
+
+a:link, a:visited {
+    color: black;
+}
+.gray, .gray a:link, .gray a:visited {
+    color: gray;
+}
+.white, .white a:link, .white a:visited {
+    color: white;
+}
