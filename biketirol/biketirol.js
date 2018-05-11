@@ -39,7 +39,9 @@ let myLayers = {
   ),
   gdi_nomenklatur: L.tileLayer(
     "http://wmts.kartetirol.at/wmts/gdi_nomenklatur/GoogleMapsCompatible/{z}/{x}/{y}.png8", {
-      attribution : "Datenquelle: <a href ='https://www.tirol.gv.at/data/nutzungsbedingungen/'> Land Tirol - data.tirol.gv.at </a>"
+      attribution : "Datenquelle: <a href ='https://www.tirol.gv.at/data/nutzungsbedingungen/'> Land Tirol - data.tirol.gv.at </a>",
+      pane: "overlayPane"                          //https://leafletjs.com/reference-1.3.0.html#tilelayer-pane
+
     }
   ),
   gdi_summer: L.tileLayer(
@@ -56,11 +58,11 @@ let myLayers = {
 
 
 
-const gdi_summerGrp = L.featureGroup([myLayers.gdi_summer, myLayers.gdi_nomenklatur])
+const gdi_summerGrp = L.layerGroup([myLayers.gdi_summer, myLayers.gdi_nomenklatur])
 
-const gdi_winterGrp = L.featureGroup([myLayers.gdi_winter, myLayers.gdi_nomenklatur])
+const gdi_winterGrp = L.layerGroup([myLayers.gdi_winter, myLayers.gdi_nomenklatur])
 
-const gdi_orthoGrp = L.featureGroup([myLayers.gdi_ortho, myLayers.gdi_nomenklatur])
+const gdi_orthoGrp = L.layerGroup([myLayers.gdi_ortho, myLayers.gdi_nomenklatur])
 
 myMap.addLayer(gdi_summerGrp);          // http://leafletjs.com/reference-1.3.0.html#map-addlayer
 // Maßstab metrisch ohne inch
