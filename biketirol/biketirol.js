@@ -12,7 +12,8 @@
 */
 
 // eine neue Leaflet Karte definieren
-let myMap = L.map("map");
+let myMap = L.map("map", {
+    fullscreenControl: true,});
 
 const etappe06Group = L.featureGroup();
 // Grundkartenlayer mit OSM, basemap.at, Elektronische Karte Tirol
