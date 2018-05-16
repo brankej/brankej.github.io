@@ -88,6 +88,8 @@ const ehrwald_marker = [ 47.399722,10.916667]
 let ehrwald_popup = '<h1>Ehrwald </h1><a href="https://de.wikipedia.org/wiki/Ehrwald">Wikipedia</a>'
 L.marker(ehrwald_marker, {icon: L.icon({
   iconUrl: '../icons/regroup.png',
+  iconAnchor : [16,37],
+  popupAnchor : [0,-37],
 })
 }).addTo(etappe06Group).bindPopup(ehrwald_popup);
 
@@ -95,6 +97,8 @@ const scharnitz_marker = [47.388333,11.265]
 let scharnitz_popup = '<h1>Scharnitz </h1><a href="https://de.wikipedia.org/wiki/Scharnitz">Wikipedia</a>'
 L.marker(scharnitz_marker, {icon: L.icon({
   iconUrl: '../icons/flag-export.png',
+  iconAnchor : [16,37],
+  popupAnchor : [0,-37],
 })
 }).addTo(etappe06Group).bindPopup(scharnitz_popup);
 
