@@ -122,14 +122,18 @@ let myMapControl  = L.control.layers({                // http://leafletjs.com/re
   }).addTo(etappe06Group);
   gpxTrack.on("loaded", function(evt) {
     myMap.fitBounds(evt.target.getBounds())
-    console.log("name",evt.target.get_name());
-    console.log("Distanz",evt.target.get_distance().toFixed(0));
-    console.log("Max_Hoehe",evt.target.get_elevation_max().toFixed(0));
-    console.log("Min_Hoehe",evt.target.get_elevation_min().toFixed(0));
-    console.log("name",evt.target.get_elevation_gain().toFixed(0));
-    console.log("name",evt.target.get_elevation_loss().toFixed(0));
+    let deep = evt.target.get_elevation_min().toFixed(0);
+    document.getElementById("deep").innerHTML= deep;
+    let peak = evt.target.get_elevation_max().toFixed(0);
+    document.getElementById("peak").innerHTML= peak;
+    let wayup = evt.target.get_elevation_gain().toFixed(0);
+    document.getElementById("wayup").innerHTML= wayup;
+    let waydown = evt.target.get_elevation_loss().toFixed(0);
+    document.getElementById("waydown").innerHTML= waydown;
     let Distanz = evt.target.get_distance().toFixed(0);
+    Distanz = Distanz/1000 //to km
     document.getElementById("Distanz").innerHTML= Distanz;
+
   });
 
   myMap.addControl(myMapControl);

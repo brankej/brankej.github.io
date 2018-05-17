@@ -1,78 +1,87 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bike Trail Tirol - Etappe 06</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Bike Trail Tirol - Etappe 06</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
-    <link rel="stylesheet" href="../js/leaflet/leaflet.css" />
-    <script src="../js/leaflet/leaflet.js"></script>
+  <link rel="stylesheet" href="../js/leaflet/leaflet.css" />
+  <script src="../js/leaflet/leaflet.js"></script>
 
 
-    <!--leaflet.fullscreen-->
-    <link rel="stylesheet" href="../js/leaflet.fullscreen/leaflet.fullscreen.css" />
-    <script src="../js/leaflet.fullscreen/Leaflet.fullscreen.js"></script>
-    <!--leaflet.fullscreen-->
+  <!--leaflet.fullscreen-->
+  <link rel="stylesheet" href="../js/leaflet.fullscreen/leaflet.fullscreen.css" />
+  <script src="../js/leaflet.fullscreen/Leaflet.fullscreen.js"></script>
+  <!--leaflet.fullscreen-->
 
-    <script src="../js/leaflet.gpx/gpx.js"></script>
+  <script src="../js/leaflet.gpx/gpx.js"></script>
 
-    <link rel="stylesheet" href="styles.css" />
-    <script defer src="biketirol.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="biketirol.js"></script>
 
 </head>
 
 <body>
-    <div id="header">
-        <h2 class="white">Bike Trail Tirol</h2>
-        <h3 class="white">Griass enk die Wadeln!</h3>
-    </div>
+  <div id="header">
+    <h2 class="white">Bike Trail Tirol</h2>
+    <h3 class="white">Griass enk die Wadeln!</h3>
+  </div>
 
-    <div class="author">
-        <img src="images/user.jpg" alt="Ihr Reiseleiter" />
-        <p class="gray">
-            <a href="mailto:johannes.branke@student.uibk.ac.at">brankej</a>
-            <a href="https://brankej.github.io/biketirol/index.html">https:/brankej.github.io/biketirol/</a>
-        </p>
-    </div>
+  <div class="author">
+    <img src="images/user.jpg" alt="Ihr Reiseleiter" />
+    <p class="gray">
+      <a href="mailto:johannes.branke@student.uibk.ac.at">brankej</a>
+      <a href="https://brankej.github.io/biketirol/index.html">https:/brankej.github.io/biketirol/</a>
+    </p>
+  </div>
 
-    <hr />
+  <hr />
 
 
-    <div class="article">
-        <h1>Etappe 06 von Ehrwald nach Scharnitz</h1>
+  <div class="article">
+    <h1>Etappe 06 von Ehrwald nach Scharnitz</h1>
 
-        <p>Rund 1.000 Höhenmeter gilt es auf dieser 40 Kilometer langen Etappe zu überwinden – außer, Sie legen einen Teil der Strecke (400 Höhenmeter) mit der Ehrwalder Almbahn zurück. Belohnt wird diese als mittelschwer eingestufte Etappe mit einer atemberaubenden Kulisse: Die Zugspitze präsentiert sich als stete Begleiterin, ehe Sie am Tor zum Naturpark Karwendel stehen.</p>
+    <p>Rund 1.000 Höhenmeter gilt es auf dieser 40 Kilometer langen Etappe zu überwinden – außer, Sie legen einen Teil der Strecke (400 Höhenmeter) mit der Ehrwalder Almbahn zurück. Belohnt wird diese als mittelschwer eingestufte Etappe mit einer atemberaubenden
+      Kulisse: Die Zugspitze präsentiert sich als stete Begleiterin, ehe Sie am Tor zum Naturpark Karwendel stehen.</p>
 
-        <p>Tourdaten: Gesamtlänge <span id="Distanz"> </span> Meter</p>
+    <p>Tourdaten:<em> Gesamtlänge  <span id="Distanz"> </span> Kilometer, tiefster Punkt <span id="deep"> </span> Meter, höchster Punkt <span id="peak"> </span> Meter, Aufstieg <span id="wayup"> </span> Meter, Abstieg <span id="waydown"> </span> Meter</em></p>
 
-        <div id="map"></div>
+    <div id="map"></div>
 
-        <h2>Streckenbeschreibung</h2>
-        <p>Zunächst radelt man leicht ansteigend bis zur Talstation der Ehrwalder Almbahn. Von hier geht es immer aufwärts auf der Route Nr. 813 bis zur Ehrwalder Alm (1,5h ab Ehrwald). Alternativ kann man die Gondelbahn benutzen. Von der Ehrwalder Alm geht es weiter am Hauptweg aufwärts, in zwei Kehren zum höchsten Punkt auf 1.600m Seehöhe. Kurz danach an der markanten Abzweigung zur Seeben Alm hält man sich links Richtung Leutasch (551). Bei einem Abstecher zur Tillfussalm oder Gaistalalm wird man mit einem eindrucksvollen Blick auf die steil abfallenden Nordwände der Mieminger Kette belohnt. Weiter geht es auf dem Hauptweg durch das Gaistal, vorbei an der Mautstelle, bis in den Leutascher Ortsteil Klamm. Hier radelt man über die Brücke nach Obern und orientiert sich am „Hotel Bergland“. Nun geht es über die nächste Straße Richtung Leutasch Oberweidach (2h ab der Ehrwalder Alm). Der Weg führt bald in den Wald und wieder überquert man eine Straße, danach fährt man links in einen Waldweg. Ab hier folgt man immer den Schildern „539 Mooserweg Seepromenade“ bzw. „Leutasch Weidach“. Nach Passieren des Weidachsees erreicht man die Hauptstraße. Dieser folgt man etwa 350 Meter und zweigt dann gleich wieder rechts ab „541 Katzenkopf- Fluder“. Nun folgt ein Anstieg im Wald über 200 Höhenmeter und eine Abfahrt durchs Fludertal bis zur Straße. Dieser folgt man kurz in nördlicher Richtung bis man auf die Straße nach Scharnitz abzweigt. Kurz bevor man die Bundesstraße erreicht, zweigt man links in die Wiesen bei Giessenbach ab und radelt die letzten Kilometer zum Etappenziel nach Scharnitz (1,5h ab Leutasch Weidach).</p>
+    <h2>Streckenbeschreibung</h2>
+    <p>Zunächst radelt man leicht ansteigend bis zur Talstation der Ehrwalder Almbahn. Von hier geht es immer aufwärts auf der Route Nr. 813 bis zur Ehrwalder Alm (1,5h ab Ehrwald). Alternativ kann man die Gondelbahn benutzen. Von der Ehrwalder Alm geht
+      es weiter am Hauptweg aufwärts, in zwei Kehren zum höchsten Punkt auf 1.600m Seehöhe. Kurz danach an der markanten Abzweigung zur Seeben Alm hält man sich links Richtung Leutasch (551). Bei einem Abstecher zur Tillfussalm oder Gaistalalm wird man
+      mit einem eindrucksvollen Blick auf die steil abfallenden Nordwände der Mieminger Kette belohnt. Weiter geht es auf dem Hauptweg durch das Gaistal, vorbei an der Mautstelle, bis in den Leutascher Ortsteil Klamm. Hier radelt man über die Brücke nach
+      Obern und orientiert sich am „Hotel Bergland“. Nun geht es über die nächste Straße Richtung Leutasch Oberweidach (2h ab der Ehrwalder Alm). Der Weg führt bald in den Wald und wieder überquert man eine Straße, danach fährt man links in einen Waldweg.
+      Ab hier folgt man immer den Schildern „539 Mooserweg Seepromenade“ bzw. „Leutasch Weidach“. Nach Passieren des Weidachsees erreicht man die Hauptstraße. Dieser folgt man etwa 350 Meter und zweigt dann gleich wieder rechts ab „541 Katzenkopf- Fluder“.
+      Nun folgt ein Anstieg im Wald über 200 Höhenmeter und eine Abfahrt durchs Fludertal bis zur Straße. Dieser folgt man kurz in nördlicher Richtung bis man auf die Straße nach Scharnitz abzweigt. Kurz bevor man die Bundesstraße erreicht, zweigt man
+      links in die Wiesen bei Giessenbach ab und radelt die letzten Kilometer zum Etappenziel nach Scharnitz (1,5h ab Leutasch Weidach).</p>
 
-        <h3>Links</h3>
-        <ul>
-            <li><a href="https://www.tirol.at/reisefuehrer/sport/radfahren/biketouren/a-bike-trail-tirol-ehrwald-scharnitz">Etappenbeschreibung bei Biketrail Tirol</a></li>
-            <li><a href="https://www.tirol.at/orte/a-scharnitz">Scharnitz</a></li>
-            <li><a href="https://www.tirol.at/reisefuehrer/veranstaltungen/events/e-karwendelmarsch">Karwendelmarsch</a></li>
-            <li><a href="https://www.tirol.at/reisefuehrer/sport/wandern/bergbahnen-im-sommer/a-ehrwalder-almbahn">Ehrwalder Almbahn</a></li>
-            <li><a href="https://www.tirol.at/orte/a-ehrwald">Ehrwald</a></li>
-            <li><a href="https://www.tirol.at/reisefuehrer/veranstaltungen/events/e-sonnwendfeuer-tiroler-zugspitz-arena">Sonnwendfeuer Tiroler Zugspitz-Arena</a></li>
-        </ul>
-    </div>
+    <h3>Links</h3>
+    <ul>
+      <li><a href="https://www.tirol.at/reisefuehrer/sport/radfahren/biketouren/a-bike-trail-tirol-ehrwald-scharnitz">Etappenbeschreibung bei Biketrail Tirol</a></li>
+      <li><a href="https://www.tirol.at/orte/a-scharnitz">Scharnitz</a></li>
+      <li><a href="https://www.tirol.at/reisefuehrer/veranstaltungen/events/e-karwendelmarsch">Karwendelmarsch</a></li>
+      <li><a href="https://www.tirol.at/reisefuehrer/sport/wandern/bergbahnen-im-sommer/a-ehrwalder-almbahn">Ehrwalder Almbahn</a></li>
+      <li><a href="https://www.tirol.at/orte/a-ehrwald">Ehrwald</a></li>
+      <li><a href="https://www.tirol.at/reisefuehrer/veranstaltungen/events/e-sonnwendfeuer-tiroler-zugspitz-arena">Sonnwendfeuer Tiroler Zugspitz-Arena</a></li>
+    </ul>
+  </div>
 
-    <hr />
+  <hr />
 
-    <div id="footer" class="gray">
-        <a class="back" href="../03/index.html">
+  <div id="footer" class="gray">
+    <a class="back" href="https://xo333.github.io/biketirol/index.html">
             <i class="fas fa-arrow-alt-circle-left"></i> vorhergehender Stop</a>
-        <a class="next" href="../08/index.html">nächster Stop
+    <a class="next" href="https://wombat77.github.io/biketirol/index.html">nächster Stop
             <i class="fas fa-arrow-alt-circle-right"></i>
         </a>
-    </div>
+  </div>
 
 </body>
+
 </html>
