@@ -22,3 +22,15 @@ a:link, a:visited {
 .white, .white a:link, .white a:visited {
     color: white;
 }
+
+
+tr:nth-child(even) {
+    text-align: left;
+}
+
+
+th, td {
+    padding: 1em;
+    text-align: left;
+    /*background-color: #4CAF50;*/
+}
