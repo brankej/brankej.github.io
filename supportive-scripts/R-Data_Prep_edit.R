@@ -32,6 +32,7 @@ statList = list() # to save data.frame with statistics
 
 for(i in 1:length(name.matches)){
   temp = raster(name.matches[i])
+  temp = mask(temp, basin.rast==0) ##remove out of AOI values, thx martin for tipp
   rList[[i]] = values(temp) # extract values for each raster
 
   # name
