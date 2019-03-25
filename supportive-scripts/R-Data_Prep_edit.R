@@ -7,8 +7,12 @@ library(rgdal)
 
 
 #set path to scenario run
-cwd='E:/OneDrive - uibk.ac.at/AlpHydro/VU Amundsen/amundsen/amundsen/Results/Gepatschalm_Assign_III/'
+cwd='E:/OneDrive - uibk.ac.at/AlpHydro/VU Amundsen/amundsen/amundsen/Results/Gepatschalm_Assign_III/' ##--> set your path
 setwd(cwd)
+
+##set path to basin raster!
+basin = "path_to_rast"  ###--> fill path
+basin.rast = raster(basin)
 
 #folderseq
 #seq_time = seq(2000, 2050, 1)
