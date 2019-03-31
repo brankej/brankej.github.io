@@ -11,7 +11,7 @@ cwd='E:/OneDrive - uibk.ac.at/AlpHydro/VU Amundsen/amundsen/amundsen/Results/Gep
 setwd(cwd)
 
 ##set path to basin raster!
-basin = "path_to_rast"  ###--> fill path
+basin = "E:/OneDrive - uibk.ac.at/AlpHydro/VU Amundsen/amundsen/amundsen/Images/Gepatschalm/WS_Gepatschalm_100.asc"  ###--> fill path
 basin.rast = raster(basin)
 
 #folderseq

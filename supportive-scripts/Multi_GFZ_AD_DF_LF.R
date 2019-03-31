@@ -14,17 +14,18 @@ library(GISTools)
 
 ##-->select MODE by abbreviation
 
-##avalanche = AD
-##debrisflow = DF
-##rockfall = LF
+##avalanche                                   = AD
+##debrisflow                                  = DF
+##rockfall                                    = LF
+##rockfall extended (Abbruzzese et al., 2009) = LF_ext
 
 
 ###############
-MODE = "LF" #-->fill
+MODE = "LF_ext" #-->fill
 ###############
 
 ##setwd
-cwd =  "E:/00_NatGef_Steinschlag_Modellierung" ##--> set drive
+cwd =  "D:/00_NatGef_Steinschlag_Modellierung" ##--> set drive
 setwd(cwd)
 
 
@@ -37,15 +38,22 @@ if (dir.exists(paste(cwd, "/OUTPUT", sep = "")) == FALSE){
 ##############
 ###Input data
 
+## only fill path if mode AD
 input_ad_30 = "OUTPUT/lawine_test_jakob/Rel4_30_MaxPressure.asc"  #-->pressure 30 jhrl
 input_ad_100= "OUTPUT/lawine_test_jakob/Rel4_100_MaxPressure.asc" #-->pressure 100 jhrl
 input_ad_300= "OUTPUT/lawine_test_jakob/RelAll_300muXi_MaxPressure.asc" #-->pressure 300 jhrl
 
+## only fill path if mode LF & LF_ext
 input_lf_30= 'RAMMS_KG6B/kgb6b_2m_large/kgb6b_2m_large/output/kgb6b_2m_large_30j/kgb6b_2m_large_30j_Kinetic Rock Energy.asc' #-->kin-energy 30 jhrl
 input_lf_100=  'RAMMS_KG6B/kgb6b_2m_large/kgb6b_2m_large/output/kgb6b_2m_large_100j/kgb6b_2m_large_100j_Kinetic Rock Energy.asc'  #-->kin-energy 100 jhrl
 input_lf_300= 'RAMMS_KG6B/kgb6b_2m_large/kgb6b_2m_large/output/kgb6b_2m_large_300j/kgb6b_2m_large_300j_Kinetic Rock Energy.asc' #-->kin-energy 300 jhrl
 
+## fill path if mode LF_ext
+input_lf_30_reach = "OUTPUT/KGB6B/kgb6b_2m_large_30j_Source Reach Probability.asc" #-->Reach Probability 30 jhrl
+input_lf_100_reach = "OUTPUT/KGB6B/kgb6b_2m_large_100j_Source Reach Probability.asc" #-->Reach Probability 100 jhrl
+input_lf_300_reach = "OUTPUT/KGB6B/kgb6b_2m_large_300j_Source Reach Probability.asc" #-->Reach Probability 300 jhrl
 
+## only fill path if mode DF
 input_df_30m= "OUTPUT/Test_script_gzp/07_03_finalspeeed_MaxHeight.asc" #-->maxheight 30 jhrl
 input_df_100m= "OUTPUT/Test_script_gzp/07_100_final_speed_MaxHeight.asc" #-->maxheight 100 jhrl
 input_df_300m= "OUTPUT/Test_script_gzp/07_300_final_MaxHeight.asc"  #-->maxheight 300 jhrl
@@ -71,11 +79,9 @@ if (MODE == "AD"){
   plot(rcl_ad_100)
   plot(rcl_ad_300)
 
-
   data_ad_30 = values(rcl_ad_30)
   data_ad_100 =values(rcl_ad_100)
   data_ad_300 = values(rcl_ad_300)
-
 
   ##empty data
   data_ad_gfz=raster(nrow=rcl_ad_30@nrows, ncol=rcl_ad_30@ncols)
@@ -83,7 +89,6 @@ if (MODE == "AD"){
   data_ad_gfz = values(data_ad_gfz)
 
   #xy[reihe,spalte]
-
 
   for (i in 1:length(values(rcl_ad_30))) {
     if  (data_ad_300[i]== 1) {
@@ -132,7 +137,6 @@ if (MODE == "AD"){
 
   ### Save Raster
   writeRaster(ad_gfz, filename = paste(cwd,"/OUTPUT/AD_GFZ.tif",sep = ""), drivers ="GTiff",  overwrite=TRUE )
-
 
 
   ##### Polygonize
@@ -309,6 +313,105 @@ if (MODE == "LF") {
   plot(lf_gfz_poly, col=rainbow(10))
 
   writeOGR(lf_gfz_poly, dsn="OUTPUT",  layer = "Poly_LF_GFZ", driver="ESRI Shapefile", overwrite_layer = T)
+
+
+
+
+  }
+
+if (MODE == "LF_ext") {
+  #read in raster
+  rast_lf_30 = raster(input_lf_30)
+  rast_lf_100 = raster(input_lf_100)
+  rast_lf_300 = raster(input_lf_300)
+
+  rast_lf_30_reach = raster(input_lf_30_reach)
+  rast_lf_100_reach = raster(input_lf_100_reach)
+  rast_lf_300_reach = raster(input_lf_300_reach)
+
+  ##Reclassify
+  rcl_lf = c(0,30.0,1,30.0,300.0,2,300,Inf,3)
+  rcl_lf_30 = reclassify(rast_lf_30, rcl_lf)
+  rcl_lf_100 = reclassify(rast_lf_100, rcl_lf)
+  rcl_lf_300 = reclassify(rast_lf_300, rcl_lf)
+
+  plot(rcl_lf_30)
+  plot(rcl_lf_100)
+  plot(rcl_lf_300)
+
+
+  data_lf_30 = values(rcl_lf_30)
+  data_lf_100 =values(rcl_lf_100)
+  data_lf_300 = values(rcl_lf_300)
+
+  data_lf_30_reach = values(rast_lf_30_reach)
+  data_lf_100_reach = values(rast_lf_100_reach)
+  data_lf_300_reach = values(rast_lf_300_reach)
+
+
+  ##empty data
+  data_lf_gfz=raster(nrow=rcl_lf_30@nrows, ncol=rcl_lf_30@ncols)
+  data_lf_gfz[] = 0
+  data_lf_gfz = values(data_lf_gfz)
+
+  #xy[reihe,spalte]
+
+
+  for (i in 1:length(values(rcl_lf_30))) {
+    if  (data_lf_300[i]== 1 && data_lf_300_reach[i]>0.0001 && data_lf_300_reach[i]<0.01) {
+      data_lf_gfz[i] = 1
+    }	#1
+    if  (data_lf_100[i]== 1 && data_lf_100_reach[i]>0.0001 && data_lf_100_reach[i]<0.01) {
+      data_lf_gfz[i] = 2
+    }	#2
+    if  (data_lf_30[i]== 1 && data_lf_30_reach[i]>0.0001 && data_lf_30_reach[i]<0.01) {
+      data_lf_gfz[i] = 3
+    }	#3
+
+    if  (data_lf_300[i]== 2 && data_lf_300_reach[i]>0.01 && data_lf_300_reach[i]<1) {
+      data_lf_gfz[i] = 4
+    }	#4
+    if  (data_lf_100[i]== 2 && data_lf_100_reach[i]>0.01 && data_lf_100_reach[i]<1) {
+      data_lf_gfz[i] = 5
+    }	#5
+    if  (data_lf_30[i]== 2 && data_lf_30_reach[i]>0.01 && data_lf_30_reach[i]<1) {
+      data_lf_gfz[i] = 6
+    }	#6
+
+    if  (data_lf_300[i]== 3 && data_lf_300_reach[i]>1) {
+      data_lf_gfz[i] = 7
+    }	#7
+    if  (data_lf_100[i]== 3 && data_lf_100_reach[i]>1) {
+      data_lf_gfz[i] = 8
+    }	#8
+    if  (data_lf_30[i]== 3 && data_lf_30_reach[i]>1) {
+      data_lf_gfz[i] = 9
+    }	#9
+
+  }
+
+
+  ## fill new raster
+
+  lf_gfz = raster(nrow=rcl_lf_30@nrows, ncol=rcl_lf_30@ncols)
+  lf_gfz = setExtent(lf_gfz,extent(rast_lf_30))
+  lf_gfz[] = data_lf_gfz
+  #lf_gfz[lf_gfz == 0] <- NA
+  proj4string(lf_gfz)=CRS("+init=epsg:31254")
+
+  plot(lf_gfz)
+
+
+  ### Save Raster
+  writeRaster(lf_gfz, filename = paste(cwd,"/OUTPUT/LF_ext_GFZ.tif",sep = ""), drivers ="GTiff",  overwrite=TRUE )
+
+
+
+  ##### Polygonize
+  lf_gfz_poly = rasterToPolygons(lf_gfz,fun=function(x){x>0},n=4,dissolve=T)
+  plot(lf_gfz_poly, col=rainbow(10))
+
+  writeOGR(lf_gfz_poly, dsn="OUTPUT",  layer = "Poly_LF_ext_GFZ", driver="ESRI Shapefile", overwrite_layer = T)
 
 
 }
