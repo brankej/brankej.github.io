@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Leaflet-map-sync</title>
+
+  <!-- dependency on jQuery -->
+  <script type="text/javascript" src="../js/jquery/jquery-3.3.1.js"></script>
+
+  <!--LEAFLET-->
+  <link rel="stylesheet" href="../js/leaflet/leaflet.css" />
+  <script src="../js/leaflet/leaflet.js"></script>
+  <!--LEAFLET-->
+
+  <script type="text/javascript" defer src="script.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+  <div id='map1'></div>
+
+  <div id="map1basemaps" class="basemaps-wrapper leaflet-bar">
+    <select name="basemaps">
+        <option value="ortho_1970_1982">1970-1982</option>
+        <option value="ortho_1999_2004">1999-2004</option>
+        <option value="ortho_2004_2009">2004-2009</option>
+        <option value="ortho_2009_2012">2009-2012</option>
+        <option value="ortho_2013_2015">2013-2015</option>
+        <option value="ortho_aktuell_rgb" disabled>Aktuell<options>
+    </select>
+  </div>
+
+  <div id='map2'></div>
+
+  <div id="map2basemaps" class="basemaps-wrapper leaflet-bar">
+    <select name="basemaps">
+      <option value="ortho_1970_1982" disabled>1970-1982</option>
+      <option value="ortho_1999_2004">1999-2004</option>
+      <option value="ortho_2004_2009">2004-2009</option>
+      <option value="ortho_2009_2012">2009-2012</option>
+      <option value="ortho_2013_2015">2013-2015</option>
+      <option value="ortho_aktuell_rgb">Aktuell<options>
+    </select>
+  </div>
+
+
+
+
+</body>
+</html>

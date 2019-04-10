@@ -39,6 +39,18 @@ let myLayers = {
       attribution : "Datenquelle: <a href ='https://basemap.at'> basemap.at </a>"
     }
   ),
+  stamen_toner: L.tileLayer("https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png", {
+        subdomains: ["a", "b", "c"],
+        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
+    }),
+    stamen_terrain: L.tileLayer("https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg", {
+        subdomains: ["a", "b", "c"],
+        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.',
+    }),
+    stamen_watercolor: L.tileLayer("https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg", {
+        subdomains: ["a", "b", "c"],
+        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
+    }),
 };
 
 
@@ -51,6 +63,9 @@ let myMapControl  = L.control.layers({                // http://leafletjs.com/re
   "Geoland Map Grey" : myLayers.bmapgrau,
   "Geoland Map Highdpi" : myLayers.bmaphidip,
   "Geoland Orthophoto 30cm" : myLayers.bmaporthofoto30cm,
+  "Stamen Toner" : myLayers.stamen_toner,
+  "Stamen Terrain" : myLayers.stamen_terrain,
+  "Stamen Watercolor" : myLayers.stamen_watercolor,
 }, {
   //overlay
   "Geoland Mapoverlay" : myLayers.bmapoverlay,
