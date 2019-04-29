@@ -315,6 +315,20 @@ if (MODE == "LF") {
   writeOGR(lf_gfz_poly, dsn="OUTPUT",  layer = "Poly_LF_GFZ", driver="ESRI Shapefile", overwrite_layer = T)
 
 
+  ##### RCL RASTER for south tyrolean matrix
+
+  ##Reclassify
+  rcl_lf_st = c(1,2,1,2,5,2,5,9,3)
+  lf_st_rast = reclassify(lf_gfz, rcl_lf_st)
+
+  ### Save RCL Raster
+  writeRaster(lf_st_rast, filename = paste(cwd,"/OUTPUT/LF_ST_GFZ.tif",sep = ""), drivers ="GTiff",  overwrite=TRUE )
+
+
+  ##### Polygonize ST
+  lf_gfz_st_poly = rasterToPolygons(lf_st_rast,fun=function(x){x>0},n=4,dissolve=T)
+
+  writeOGR(lf_gfz_st_poly, dsn="OUTPUT",  layer = "Poly_ST_LF_GFZ", driver="ESRI Shapefile", overwrite_layer = T)
 
 
   }
@@ -412,6 +426,22 @@ if (MODE == "LF_ext") {
   plot(lf_gfz_poly, col=rainbow(10))
 
   writeOGR(lf_gfz_poly, dsn="OUTPUT",  layer = "Poly_LF_ext_GFZ", driver="ESRI Shapefile", overwrite_layer = T)
+
+
+  ##### RCL RASTER for south tyrolean matrix
+
+  ##Reclassify
+  rcl_lf_st = c(1,2,1,2,5,2,5,9,3)
+  lf_st_rast = reclassify(lf_gfz, rcl_lf_st)
+
+  ### Save RCL Raster
+  writeRaster(lf_st_rast, filename = paste(cwd,"/OUTPUT/LF_ext_ST_GFZ.tif",sep = ""), drivers ="GTiff",  overwrite=TRUE )
+
+
+  ##### Polygonize ST
+  lf_gfz_st_poly = rasterToPolygons(lf_st_rast,fun=function(x){x>0},n=4,dissolve=T)
+
+  writeOGR(lf_gfz_st_poly, dsn="OUTPUT",  layer = "Poly_ST_LF_ext_GFZ", driver="ESRI Shapefile", overwrite_layer = T)
 
 
 }
