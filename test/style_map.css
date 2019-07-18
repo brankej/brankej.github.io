@@ -1,0 +1,164 @@
+/*
+*
+* CSS styles for the gspritzt project
+*
+*/
+
+body {
+    max-width: 1400px;
+    margin: auto;
+    font-family: "Open Sans"; /* Source: https://fonts.google.com/specimen/Open+Sans */
+}
+
+#header {
+    text-align: center;
+    background-color: white;
+    /*background-image: url('images/Umbal_Kees_klein.jpg');*/
+    background-repeat: no-repeat;
+    height: 200px
+}
+#header h2 {
+    font-size: 4em;
+    padding: 1em 0;
+    margin: 0;
+    text-shadow: 2px 2px 4px #000000;
+}
+#header h3 {
+    font-size: 2em;
+    margin: 0;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+/* Style the top navigation bar */
+.topnav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;;
+    background-color: #6E6E6E;
+}
+
+/* Style the topnav links */
+.topnav li {
+  float: left;
+}
+
+.topnav li a {
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav li a:hover:not(.active) {
+    background-color: #ddd;
+    color: black;
+}
+
+/* show color on active link */
+.active {
+    background-color: #3182bd; /*http://colorbrewer2.org/#type=sequential&scheme=Blues&n=3*/
+}
+
+/* Style for datavizforall mouseover*/
+
+.info {
+  padding: 6px 8px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+.info h4 {
+  margin: 0 0 5px;
+  color: #777;
+}
+.legend {
+  text-align: left;
+  line-height: 18px;
+  color: #555;
+}
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+
+/* Style the top navigation bar */
+.topnav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;;
+    background-color: #6E6E6E;
+}
+
+/* Style the topnav links */
+.topnav li {
+  float: left;
+}
+
+.topnav li a {
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav li a:hover:not(.active) {
+    background-color: #ddd;
+    color: black;
+}
+
+/* show color on active link */
+.active {
+    background-color: #3182bd; /*http://colorbrewer2.org/#type=sequential&scheme=Blues&n=3*/
+}
+
+#map {
+    width: 100%;
+    height: 760px;
+    border: 1px solid gray;
+}
+
+.article figure  {
+    padding: 10px; /* if you want space between the images */
+}
+
+.article figure figcaption  {
+    margin-left: -12em;
+    width: 11.5em;
+    font-size: 0.8em;
+    float: left;
+    /*width: 33.33%; *//* three containers (use 25% for four, and 50% for two, etc) */
+    padding: 10px; /* if you want space between the images */
+}
+
+#footer {
+    width: 100%;
+    padding: 1em 0 3em 0;
+    font-size: 0.75em;
+}
+
+
+a:link, a:visited {
+    color: black;
+}
+.gray, .gray a:link, .gray a:visited {
+    color: gray;
+}
+.white, .white a:link, .white a:visited {
+    color: white;
+}
+
+.red {
+    color: red;
+}

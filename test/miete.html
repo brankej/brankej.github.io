@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title> Mietpreisspiegel - IBK - TEST </title>
+
+  <!--FONTS-->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <!--FONTS-->
+
+
+  <!--LEAFLET-->
+  <link rel="stylesheet" href="js/leaflet/leaflet.css" />
+  <script src="js/leaflet/leaflet.js"></script>
+  <!--LEAFLET-->
+
+  <!--leaflet.fullscreen-->
+  <link rel="stylesheet" href="js/Leaflet.fullscreen/leaflet.fullscreen.css" />
+  <script src="js/Leaflet.fullscreen/Leaflet.fullscreen.js"></script>  <!-- TODO:  picture for leaflet fullscreen missing -->
+  <!--leaflet.fullscreen-->
+
+  <!--leaflet.hash-->
+  <script src="js/leaflet.hash/leaflet-hash.js" ></script>
+  <!--leaflet.hash-->
+
+
+
+  <!--topojson-->
+  <script src="js/d3/d3.v3.min.js"></script>
+  <script src="js/TopoJSON/topojson.js"></script> <!-- https://github.com/topojson/topojson -->
+  <script src="js/TopoJSON/L.TopoJSON.js"></script> <!-- https://gist.github.com/brendanvinson/0e3c3c86d96863f1c33f55454705bca7-->
+  <script src="js/TopoJSON/topojson-simplify.js"></script>
+  <!--topojson-->
+
+  <!-- load jQuery  -->
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+  <!--jQuery-->
+
+
+  <!--Geojson Dataa-->
+  <script defer src="data/data.js"></script>
+  <!--Geojson Data-->
+
+
+  <!--MAP-->
+  <link rel="stylesheet" href="style_map.css" />
+  <script defer src="basemap.js"></script>
+  <!--MAP-->
+
+</head>
+  <body>
+    <h1>Mietpreisspiegel - IBK - TEST</h1>
+    <div id="map" style="height: 600px;width: 900px;"></div>
+  </body>
+</html>
