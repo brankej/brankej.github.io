@@ -12,7 +12,7 @@ library(rgdal)
 library(GISTools)
 
 ##setwd
-cwd =  "E:/00_NatGef_Steinschlag_Modellierung/Rockyfor3D_KG6B/"
+cwd =  "D:/00_NatGef_Steinschlag_Modellierung/Rockyfor3D_KG6B/"
 setwd(cwd)
 
 terrain = "simulation+_anriss_sm/5m/30/terrain.shp"
@@ -119,8 +119,8 @@ plot(terrain_poly, add=T)
   
 ## write out raster
 
-writeRaster(rast_energy_30_1, filename = paste(cwd,"/edit_luuk/rocky30_energy.tif",sep = ""), drivers ="GTiff",  overwrite=TRUE )
+writeRaster(rast_energy_30_1, filename = paste(cwd,"/edit_luuk/rocky30_energy.asc",sep = ""), drivers ="AAIGrid ",  overwrite=TRUE )
 
-writeRaster(rast_energy_100_1, filename = paste(cwd,"/edit_luuk/rocky100_energy.tif",sep = ""), drivers ="GTiff",  overwrite=TRUE )
+writeRaster(rast_energy_100_1, filename = paste(cwd,"/edit_luuk/rocky100_energy.asc",sep = ""), drivers ="AAIGrid ",  overwrite=TRUE )
 
-writeRaster(rast_energy_300_1, filename = paste(cwd,"/edit_luuk/rocky300_energy.tif",sep = ""), drivers ="GTiff",  overwrite=TRUE )
+writeRaster(rast_energy_300_1, filename = paste(cwd,"/edit_luuk/rocky300_energy.asc",sep = ""), drivers ="AAIGrid ",  overwrite=TRUE )
