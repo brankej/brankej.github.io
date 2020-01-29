@@ -20,7 +20,7 @@ const mapLayer = {
   }),
 };
 
-mapLayer.stamen_watercolor.addTo(myMap);
+
 
 const layerControl = L.control.layers({
   "Stamen Toner": mapLayer.stamen_toner,
@@ -34,6 +34,10 @@ const layerControl = L.control.layers({
   collapsed: false
 }).addTo(myMap);
 
+
+mapLayer.stamen_toner.addTo(myMap);
+
+
 //Maßstabsleiste
 let myScale = L.control.scale({
   position: "bottomleft",
@@ -45,12 +49,16 @@ let myScale = L.control.scale({
 myScale.addTo(myMap);
 
 
+let url = "https://aws.openweb.cc/stations"
+//url = "https://lawine.tirol.gv.at/data/produkte/ogd.geojson"
+
+
 
 
 // Daten vom Server holen
 async function loadStations() {
   // await: warte auf Aufruf, Daten von Homepage lesen
-  const response = await fetch("https://aws.openweb.cc/stations");
+  const response = await fetch(url);
   // Umwandeln in GeoJson
   const stations = await response.json();
   const awsTirol = L.featureGroup();
@@ -259,7 +267,7 @@ async function loadStations() {
     }
   }).addTo(temp);
   layerControl.addOverlay(temp, "Lufttemperatur");
-  temp.addTo(myMap);
+//temp.addTo(myMap);
 
 
   // Create Leaflet Control Object for Legend
@@ -318,6 +326,8 @@ async function loadStations() {
 
   }).addTo(humidity);
   layerControl.addOverlay(humidity, "Relative Feuchte")
+
+  awsTirol.addTo(myMap);   // add stations to map
 };
 
 
@@ -385,5 +395,12 @@ myMap.on('baselayerchange', function(eventLayer) {
     // Add Legend to Map
     currentLegend = templegend;
     templegend.addTo(myMap);
+
+
+
+
   }
+  //
+  //
+
 })
