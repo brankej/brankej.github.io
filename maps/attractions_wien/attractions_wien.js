@@ -1,6 +1,6 @@
 let myMap = L.map("mapdiv");        // http://leafletjs.com/reference-1.3.0.html#map-l-map
 
-const citybikeGroup = L.markerClusterGroup();
+const attractionsGroup = L.featureGroup();
 
 let myLayers = {
   osm : L.tileLayer(                // http://leafletjs.com/reference-1.3.0.html#tilelayer-l-tilelayer
@@ -53,6 +53,7 @@ let myLayers = {
     }),
 };
 
+
 myMap.addLayer(myLayers.bmaporthofoto30cm);                    // http://leafletjs.com/reference-1.3.0.html#map-addlayer
 
 let myMapControl  = L.control.layers({                // http://leafletjs.com/reference-1.3.0.html#control-layers-l-control-layers
@@ -68,7 +69,7 @@ let myMapControl  = L.control.layers({                // http://leafletjs.com/re
 }, {
   //overlay
   "Geoland Mapoverlay" : myLayers.bmapoverlay,
-  "CityBikes" : citybikeGroup,
+  "Sehenswürdigkeiten" : attractionsGroup,
 }, { //map control ausgeklappt lassen
   collapsed:false} );                               // http://leafletjs.com/reference-1.3.0.html#control-layers-collapsed
 
@@ -90,37 +91,33 @@ async function addGeojson(url) {
   console.log("URL wird geladen: ", url);
   const response = await fetch(url);
   console.log("Response: ", response);
-  const citybike = await response.json();
-  console.log("GeoJSON: ", citybike);
-  const geojson = L.geoJSON(citybike, {
+  const attractions = await response.json();
+  console.log("GeoJSON: ", attractions);
+  const geojson = L.geoJSON(attractions, {
     style: function(feature) {
       return {color: "#ff0000"};
     },
     pointToLayer: function(geoJsonPoint, latlng) {
       return L.marker(latlng, {icon: L.icon({
-        iconUrl: 'icons/cycling.png',
+        iconUrl: '../../icons/pinother.png',
       })
       });
     }
-  }).addTo(citybikeGroup);
-  citybikeGroup.addLayer(geojson);
-  myMap.fitBounds(citybikeGroup.getBounds());
+  }).addTo(attractionsGroup);
+  attractionsGroup.addLayer(geojson);
+  myMap.fitBounds(attractionsGroup.getBounds());
   geojson.bindPopup(function(layer) {
     const props = layer.feature.properties;
-    const popupText = `<h1>${props.STATION}</h1>
-    <p> Bezirk: ${props.BEZIRK} </p>`;
+    const popupText = `<h1>${props.NAME}</h1>
+    <p> Adresse: ${props.ADRESSE} </p>
+    <p>Weiter Informationen: ${props.WEITERE_INF} </p>`;
     return popupText;
   });
-  const hash = new L.Hash(myMap);
-  myMap.addControl( new L.Control.Search({
-    layer: citybikeGroup,
-  propertyName: 'STATION'
-}) );
 }
 
-const url = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:CITYBIKEOGD&srsName=EPSG:4326&outputFormat=json";
+const url = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json";
 
 addGeojson(url);
 
-myMap.addLayer(citybikeGroup)
+myMap.addLayer(attractionsGroup)
 myMap.addLayer(myLayers.bmapoverlay)
