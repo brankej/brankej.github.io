@@ -8,20 +8,21 @@
 
 
 :root {
-  --bg-color: #fff; /* prev: #f9f9f9 */
+  --bg-color: #fff;
+  /* prev: #f9f9f9 */
   --recessed-bg-color: #e3e3e3;
   --hover-bg-color: #e9e9e9;
   --color: #000;
   --primary-color: #e66622;
   --muted-color: #999;
   --link-color: #05f;
-  --action-color: var(
-    --primary-color
-  ); /* For buttons and other non-link controls */
+  --action-color: var(--primary-color);
+  /* For buttons and other non-link controls */
 
   /* Misc colors */
   --green: #58df82;
-  --yellow: #f6dc58; /* FDF5CF*/
+  --yellow: #f6dc58;
+  /* FDF5CF*/
   --orange: #fca469;
 
   /* Body text line height */
@@ -30,7 +31,8 @@
 
   /* Borders and corners */
   --border-color: #000;
-  --border-color-light: #ccc; /* Used for inline content  */
+  --border-color-light: #ccc;
+  /* Used for inline content  */
 
   --border-radius: 6px;
   --border-radius-large: 8px;
@@ -48,10 +50,13 @@
   /* Layout
      All px estimates of rem values assume 16px font-size.
   */
-  --nav-width: 8.75rem; /* 140px */
+  --nav-width: 8.75rem;
+  /* 140px */
   --gutter: 12px;
-  --post-max-width: 60rem; /* 960px */
-  --page-max-width: 60rem; /* 960px */
+  --post-max-width: 60rem;
+  /* 960px */
+  --page-max-width: 60rem;
+  /* 960px */
   --text-max-width: 35rem;
 }
 
@@ -207,8 +212,8 @@ pre {
   background-color: #eee;
 }
 
-p > code,
-li > code {
+p>code,
+li>code {
   padding: 2px 6px;
   color: #198844;
   border: 1px solid var(--border-color-light);
@@ -260,15 +265,18 @@ li > code {
     display: block;
     position: fixed;
     left: 0;
-    padding-top: 6px; /* Help line it up with top of the page/post title  */
+    padding-top: 6px;
+    /* Help line it up with top of the page/post title  */
     margin: 0 0 0 var(--gutter);
   }
+
   .nav__list {
     display: block;
     margin-right: 0;
     margin-bottom: var(--gutter);
     border: none;
   }
+
   .nav__item {
     display: block;
     padding: 0.25em 1em 0.25em 0.5em;
@@ -288,10 +296,12 @@ li > code {
     border-bottom: 1px solid var(--border-color);
   }
 }
+
 @media (max-width: 799px) {
   .nav__item--hide-mobile {
     display: none;
   }
+
   .nav__item--mobile-last {
     border-right: none;
   }
@@ -335,6 +345,7 @@ li > code {
 }
 
 @media (min-width: 800px) {
+
   .post,
   .page {
     margin-left: var(--nav-width);
@@ -364,16 +375,16 @@ li > code {
   content: ". ";
 }
 
-.post__content > p,
-.post__content > h2,
-.post__content > h3,
-.post__content > ul,
-.post__content > ol,
-.post__content > hr {
+.post__content>p,
+.post__content>h2,
+.post__content>h3,
+.post__content>ul,
+.post__content>ol,
+.post__content>hr {
   max-width: var(--text-max-width);
 }
 
-.post__content > .col {
+.post__content>.col {
   max-width: var(--text-max-width);
 }
 
