@@ -1,5 +1,12 @@
 // COVID-19 MAP by webmapping.github.io edited by J.
 
+
+
+//######################################################################
+// MAP STUFF
+//######################################################################
+
+
 //start TileLayer Leaflet
 let startLayer = L.tileLayer.provider("Stamen.TonerLite");
 
@@ -35,23 +42,30 @@ L.control.layers({
 
 
 //######################################################################
+// DATA STUFF
+//######################################################################
+
+
+//slider issues
+let sliderInitialized = false;
+let animationInitialized = false;
 
 // Main Function Stream John Hopkins CSV DATA with PapaParse and Display as Points on Leaflet Map
 async function getCovidData(url) {
     //console.log("URL wird geladen: ", url);
-    
+
     //download Data
     const data = await Papa.parse(url, {
         download: true,
-        complete: function(results) {
-            
+        complete: function (results) {
+
             // on download complete make Map with streamed DATA
             let index = document.querySelector("#slider").value;
             //console.log("Index: ",index);
             let options = document.querySelector("#pulldown").options;
             let label = options[options.selectedIndex].text;
             //console.log("Label: ",label);
-            let header =results.data[0];
+            let header = results.data[0];
             //console.log("Header:  ",header);
             //console.log("All Data: ",results.data)
 
@@ -71,25 +85,25 @@ async function getCovidData(url) {
             } else {
                 color = "#2ECC40";
             }
-            
+
             // make MAP Points
-            for (let i = 1; i < results.data.length-1; i++) { //-1 because empty row 264?
+            for (let i = 1; i < results.data.length - 1; i++) { //-1 because empty row 264?
                 let row = results.data[i];
                 //console.log(row[2],row[3], i);
                 let reg = `${row[0]} ${row[1]}`;
                 let lat = row[2];
                 let lng = row[3];
                 let val = row[index];
-                
+
                 //skip if noone
                 if (val === "0") {
                     continue;
                     //console.log(val)
                 }
-        
+
                 //let mrk = L.marker([lat,lng]).addTo(map);
                 //mrk.bindPopup(`${reg}: ${val}`);
-        
+
                 //A = r²*PI
                 //r² = A/PI
                 //r = WURZEL(A/PI)
@@ -102,17 +116,18 @@ async function getCovidData(url) {
                 }).addTo(circleGroup);
                 circle.bindPopup(`${reg}: ${val}`);
             }
-                //########################
-                // Slide has to be inside function cause of header.length value, can't be accessed outside!
-            
-                //new function call on pulldown change
-                document.querySelector("#pulldown").onchange = function () {
-                    drawMap();
-                };
+            //########################
+            // Slide has to be inside function cause of header.length value, can't be accessed outside!
+
+            //new function call on pulldown change
+            document.querySelector("#pulldown").onchange = function () {
+                drawMap();
+            };
 
 
-                //define slider
-                let slider = document.querySelector("#slider");
+            //define slider
+            let slider = document.querySelector("#slider");
+            if (!sliderInitialized) {
                 slider.min = 4;
                 slider.max = header.length - 1;
                 slider.step = 1;
@@ -121,7 +136,12 @@ async function getCovidData(url) {
                 slider.onchange = function () {
                     drawMap();
                 };
+                sliderInitialized = true;
 
+            }
+
+
+            if (!animationInitialized) {
                 //add playbutton
                 let playButton = document.querySelector("#play");
                 let runningAnimation = null;
@@ -155,13 +175,16 @@ async function getCovidData(url) {
                         }, 250)
                     }
                 };
+                animationInitialized = true;
+            }
+
 
         }
 
-    })  
-  };
+    })
+};
 
-      
+
 
 // Wrapper Function to feed url to PapaParse
 let drawMap = function () {
@@ -170,13 +193,13 @@ let drawMap = function () {
     let value = options[options.selectedIndex].value;
 
     if (value === "confirmed") {
-        const url_conf =  "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
+        const url_conf = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
         getCovidData(url_conf);
     } else if (value === "deaths") {
-        const url_deaths =  "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
+        const url_deaths = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
         getCovidData(url_deaths);
     } else {
-        const url_recov =  "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"
+        const url_recov = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"
         getCovidData(url_recov);
     }
 
