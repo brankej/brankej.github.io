@@ -131,7 +131,12 @@ async function getCovidData(url) {
                 slider.min = 4;
                 slider.max = header.length - 1;
                 slider.step = 1;
-                slider.value = slider.max; //TODO: on each new function call, even on play=T slide value will be overwritten with sldier.max.
+                slider.value = slider.max; 
+
+                //slider possible values
+                let range = slider.max - slider.min
+                //TODO
+
 
                 slider.onchange = function () {
                     drawMap();
