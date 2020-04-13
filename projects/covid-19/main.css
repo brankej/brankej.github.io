@@ -33,6 +33,26 @@ header nav a {
     color: white;
 }
 
+#stats {
+    float: left;
+    padding-right: 0.5em;
+    color: crimson;
+}
+
+table {
+    width: 100%;
+}
+
+th {
+    height: 10px;
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: left;
+}
+
 #map {
     width: 100%;
     height: 80vh;

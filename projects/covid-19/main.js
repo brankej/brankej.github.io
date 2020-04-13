@@ -68,10 +68,13 @@ async function getCovidData(url) {
             let header = results.data[0];
             //console.log("Header:  ",header);
             //console.log("All Data: ",results.data)
+            let total = 0;
+
 
             // Show Date and Theme
-            document.querySelector("#datum").innerHTML = `am ${header[index]} - ${label}`;
+            document.querySelector("#datum").innerHTML = `for ${header[index]} - ${label}`;
             circleGroup.clearLayers();
+
 
             results.data.sort(function compareNumbers(row1, row2) {
                 return row2[index] - row1[index];
@@ -95,6 +98,11 @@ async function getCovidData(url) {
                 let lng = row[3];
                 let val = row[index];
 
+                //testtesttest
+                let data2sum = row[header.length - 1];
+                //console.log(typeof(data2sum));
+                total += parseInt(data2sum);
+
                 //skip if noone
                 if (val === "0") {
                     continue;
@@ -115,6 +123,9 @@ async function getCovidData(url) {
                     color: color
                 }).addTo(circleGroup);
                 circle.bindPopup(`${reg}: ${val}`);
+
+                // print sum of values per dropdown
+                //document.getElementById("sli_calc").innerHTML= total;  // not working as supposed WIP TODO!!!!!
             }
             //########################
             // Slide has to be inside function cause of header.length value, can't be accessed outside!
@@ -131,7 +142,7 @@ async function getCovidData(url) {
                 slider.min = 4;
                 slider.max = header.length - 1;
                 slider.step = 1;
-                slider.value = slider.max; 
+                slider.value = slider.max;
 
                 //slider possible values
                 let range = slider.max - slider.min
@@ -189,6 +200,61 @@ async function getCovidData(url) {
     })
 };
 
+
+
+
+//function to get total stats
+async function getStats(url) {
+    //console.log("URL wird geladen: ", url);
+
+    //download Data
+    const data = await Papa.parse(url, {
+        download: true,
+        complete: function (results) {
+            let total = 0;
+            let header = results.data[0];
+            let date = header[header.length - 1];
+
+            for (let i = 1; i < results.data.length - 1; i++) { //-1 because header
+                let header_length = results.data[0].length
+                let row = results.data[i];
+
+                let data2sum = row[header_length - 1];
+                //console.log(typeof(data2sum));
+                total += parseInt(data2sum);
+
+                //console.log(total);
+                if (url === "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv") {
+                    document.getElementById("sum_conf").innerHTML = total;
+                } else if (url === "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv") {
+                    document.getElementById("sum_deaths").innerHTML = total;
+                } else {
+                    document.getElementById("sum_recov").innerHTML = total;
+                }
+
+                document.getElementById("recent_date").innerHTML = date;
+
+            }
+        }
+    })
+};
+
+
+//run get Stats for every csv instance
+let getGlobalStats = function () {
+    const url_conf = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
+    const url_deaths = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
+    const url_recov = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"
+
+    getStats(url_deaths);
+    getStats(url_recov);
+    getStats(url_conf);
+
+
+}
+
+//get Stats
+getGlobalStats();
 
 
 // Wrapper Function to feed url to PapaParse

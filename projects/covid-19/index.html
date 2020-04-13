@@ -17,16 +17,18 @@
     <script src='js/PapaParse/papaparse.min.js'></script>
 
     <link rel="stylesheet" href="main.css">
-    
+
     <script defer src="main.js"></script>
 </head>
 
 <body>
     <header>
-        <h2><i class="fas fa-map-marked"></i> Up-to-Date COVID-19 Spreading <span id="datum"></span></h2>
+        <h2><i class="fas fa-map-marked"></i> Up-to-Date COVID-19 Spreading <span id="datum"></span> <span
+                id="sli_calc"></span></h2>
         <nav>
             <p>
-                <i class="fab fa-github"></i> <a href="https://github.com/webmapping/webmapping.github.io/tree/master/world">Orig. Source</a> |
+                <i class="fab fa-github"></i> <a
+                    href="https://github.com/webmapping/webmapping.github.io/tree/master/world">Orig. Source</a> |
                 <i class="fas fa-download"></i> <a href="https://github.com/CSSEGISandData/COVID-19">COVID-Data</a>
             </p>
         </nav>
@@ -34,7 +36,7 @@
 
     <main>
         <div id="map"></div>
-        <input type="range" id="slider"> 
+        <input type="range" id="slider">
         <select id="pulldown">
             <option value="confirmed">Confirmed</option>
             <option value="deaths">Deaths</option>
@@ -42,6 +44,22 @@
         </select>
         <input id="play" type="button" value="▶">
     </main>
+    <h3>Total Global Statistics</h3>
+    <div id="stats">
+        <table>
+            <tr>
+                <th>Confirmed</th>
+                <th>Deaths</th>
+                <th>Recovered</th>
+            </tr>
+            <tr>
+                <td><span id="sum_conf"></span></td>
+                <td><span id="sum_deaths"></span></td>
+                <td><span id="sum_recov"></span></td>
+            </tr>
+        </table>
+        <p> [last refreshed <span id="recent_date"></span>]</p>
+    </div>
 </body>
 
 </html>
